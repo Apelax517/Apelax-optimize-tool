@@ -716,6 +716,11 @@ footer strong {
 .users-empty { padding: 22px 16px; text-align: center; font: 600 14px var(--font-body); color: var(--gray-text); }
 @media (max-width: 640px) { .users-btn { padding: 8px 10px; } .users-label { display: none; } }
 
+/* VISITORS ONLINE */
+.visitors-line { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--gray-border); font: 600 13px var(--font-body); color: var(--gray-text); }
+.visitors-line b { color: var(--white); font: 800 15px var(--font-title); }
+.visitors-dot { width: 8px; height: 8px; border-radius: 50%; background: #00CC4E; box-shadow: 0 0 8px #00CC4E; }
+
 /* WISHLIST */
 .wish-btn svg { fill: none; stroke: currentColor; stroke-width: 2; }
 .wish-btn.has-items svg { fill: var(--red-primary); stroke: var(--red-primary); }
@@ -1076,6 +1081,7 @@ footer .foot-logo { width: 64px; height: 64px; border-radius: 50%; object-fit: c
 
 <div class="users-panel" id="usersPanel" role="dialog" aria-label="Users">
  <div class="users-head"><h3>Users</h3><span class="users-online"><span id="usersOnline">0</span> online</span></div>
+ <div class="visitors-line"><span class="visitors-dot"></span><b id="visitorsOnline">0</b> <span>visitors online now</span></div>
  <ul class="users-list" id="usersList"></ul>
 </div>
 
@@ -1758,7 +1764,7 @@ import {
  getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 import {
- getFirestore, doc, setDoc, serverTimestamp, collection, query, orderBy, limit, onSnapshot, arrayUnion, arrayRemove
+ getFirestore, doc, setDoc, serverTimestamp, collection, query, orderBy, limit, onSnapshot, arrayUnion, arrayRemove, where, Timestamp, deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -1955,6 +1961,35 @@ function stopWishlist(){
 window.apelaxWishlistToggle = toggleWishItem;
 window.apelaxWishlistRefresh = renderWishlist;
 renderWishlist();
+
+/* ===== VISITORS ONLINE: real count of open tabs (logged in or not) ===== */
+const visitorsOnline = document.getElementById('visitorsOnline');
+const PRESENCE_MS = 150 * 1000;
+let presenceId = null, unsubPresence = null;
+try { presenceId = sessionStorage.getItem('apelax-sid'); } catch (_) {}
+if (!presenceId) {
+ presenceId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2));
+ try { sessionStorage.setItem('apelax-sid', presenceId); } catch (_) {}
+}
+function pingPresence(){
+ if (!db || document.visibilityState !== 'visible') return;
+ setDoc(doc(db, 'presence', presenceId), { lastSeen: serverTimestamp() }, { merge: true })
+  .catch(err => console.warn('Presence: could not save', err));
+}
+function listenPresence(){
+ if (!db) return;
+ if (unsubPresence) unsubPresence();
+ const since = Timestamp.fromMillis(Date.now() - PRESENCE_MS);
+ unsubPresence = onSnapshot(query(collection(db, 'presence'), where('lastSeen', '>', since), limit(1000)),
+  snap => { visitorsOnline.textContent = String(Math.max(1, snap.size)); },
+  err => console.warn('Presence: could not load', err));
+}
+if (db) {
+ pingPresence(); listenPresence();
+ setInterval(() => { pingPresence(); listenPresence(); }, 60 * 1000);
+ document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') pingPresence(); });
+ window.addEventListener('pagehide', () => { deleteDoc(doc(db, 'presence', presenceId)).catch(() => {}); });
+}
 
 function renderSignedOut(){
  const area = document.getElementById('authArea');
