@@ -8,7 +8,7 @@
 <title>APELAX // OPTIMIZE — Premium Gaming Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@500;600;800&display=swap" rel="stylesheet">
 <style>
 :root {
  --bg-dark: #050505;
@@ -23,7 +23,7 @@
  --gray-border: rgba(255, 255, 255, 0.08);
  --glass-bg: rgba(13, 15, 20, 0.72);
  --glass-border: rgba(255, 255, 255, 0.1);
- --font-title: 'Orbitron', sans-serif;
+ --font-title: 'Jura', 'Segoe UI', sans-serif;
  --font-body: 'Rajdhani', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1071,6 +1071,119 @@ header.sticky-header { border-radius: 999px; padding: 10px 22px; }
 @media (max-width: 900px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .features-grid { grid-template-columns: 1fr; } .ticker-track span { font-size: 13px; padding: 0 16px; } }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+/* ===== FF AI CHAT ===== */
+.ffai-hbtns { display: flex; gap: 6px; align-items: center; }
+.ffai-lang { width: auto; padding: 0 10px; height: 30px; border-radius: 999px; font: 800 12px var(--font-title); letter-spacing: .5px; }
+.ffai-fab { position: fixed; right: 18px; bottom: 18px; z-index: 180; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border: 0; border-radius: 999px; cursor: pointer;
+  font: 800 14px var(--font-title); letter-spacing: 1px; color: #fff; background: linear-gradient(135deg, var(--red-primary), var(--blue-secondary)); box-shadow: 0 0 26px rgba(18,181,255,.5); transition: .2s; }
+.ffai-fab:hover { transform: translateY(-2px); }
+.ffai-panel { position: fixed; right: 18px; bottom: 78px; z-index: 181; width: 360px; max-width: calc(100vw - 24px); height: min(540px, 75vh); display: none; flex-direction: column; overflow: hidden;
+  border-radius: 22px; background: rgba(8,9,12,.97); border: 1px solid rgba(18,181,255,.4); box-shadow: 0 18px 50px rgba(0,0,0,.7); }
+.ffai-panel.open { display: flex; }
+.ffai-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--gray-border); background: linear-gradient(90deg, rgba(18,181,255,.16), rgba(106,123,255,.12)); }
+.ffai-head b { font: 800 14px var(--font-title); letter-spacing: 1px; }
+.ffai-head small { display: block; color: var(--gray-text); font: 600 12px var(--font-body); }
+.ffai-x { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--gray-border); background: rgba(255,255,255,.06); color: #fff; cursor: pointer; }
+.ffai-msgs { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.ffai-m { max-width: 88%; padding: 10px 13px; border-radius: 16px; font: 600 15px/1.4 var(--font-body); white-space: pre-wrap; word-wrap: break-word; }
+.ffai-m.bot { align-self: flex-start; background: rgba(255,255,255,.07); border: 1px solid var(--gray-border); border-bottom-left-radius: 4px; }
+.ffai-m.me { align-self: flex-end; background: linear-gradient(135deg, var(--red-primary), var(--red-glow)); color: #fff; border-bottom-right-radius: 4px; }
+.ffai-act { align-self: flex-start; padding: 8px 14px; border-radius: 999px; cursor: pointer; font: 700 13px var(--font-body); color: #fff; background: rgba(18,181,255,.15); border: 1px solid rgba(18,181,255,.45); }
+.ffai-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; }
+.ffai-chip { padding: 6px 12px; border-radius: 999px; cursor: pointer; font: 700 12px var(--font-body); color: var(--white); background: rgba(255,255,255,.06); border: 1px solid var(--gray-border); }
+.ffai-chip:hover { border-color: var(--red-primary); }
+.ffai-form { display: flex; gap: 8px; padding: 10px 12px 12px; border-top: 1px solid var(--gray-border); }
+.ffai-form input { flex: 1; min-width: 0; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--gray-border); background: rgba(255,255,255,.05); color: #fff; font: 600 15px var(--font-body); outline: none; }
+.ffai-form input:focus { border-color: var(--red-primary); }
+.ffai-form button { padding: 0 16px; border: 0; border-radius: 999px; cursor: pointer; font: 800 13px var(--font-title); color: #fff; background: linear-gradient(135deg, var(--red-primary), var(--red-glow)); }
+@media (max-width: 520px) { .ffai-fab span.t { display: none; } .ffai-panel { right: 12px; bottom: 74px; } }
+
+
+/* ===== ONE MENU for everything (all screen sizes) ===== */
+.hamburger { display: grid !important; place-items: center; width: 44px; height: 44px; font-size: 22px; line-height: 1; border-radius: 50%; cursor: pointer;
+  background: linear-gradient(135deg, rgba(18,181,255,.25), rgba(106,123,255,.25)); border: 1px solid rgba(18,181,255,.55); color: #fff; transition: .2s; }
+.hamburger:hover, .hamburger[aria-expanded="true"] { box-shadow: 0 0 18px rgba(18,181,255,.55); }
+.nav-menu { position: absolute; top: calc(100% + 10px); right: 0; left: auto; width: min(380px, 100%); max-height: calc(100vh - 110px); max-height: calc(100dvh - 110px); overflow-y: auto;
+  flex-direction: column; align-items: stretch; gap: 4px; padding: 12px; background: rgba(10,12,17,.99); backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border); border-radius: 22px; box-shadow: 0 20px 50px rgba(0,0,0,.65), 0 0 30px rgba(18,181,255,.12);
+  opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-10px); transition: opacity .25s ease, transform .25s ease, visibility 0s linear .25s; }
+.nav-menu.open { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition: opacity .25s ease, transform .25s ease; }
+.nav-menu .nav-link { display: block; padding: 14px 16px; font-size: 17px; color: #e6e9f0; border-radius: 12px; border-bottom: 1px solid rgba(255,255,255,.05); }
+.nav-menu .nav-link:active, .nav-menu .nav-link:hover { background: rgba(18,181,255,.14); color: #fff; }
+.nav-actions { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.1); }
+.nav-actions #authArea { display: block; }
+.nav-actions .users-btn, .nav-actions .google-login { display: flex; width: 100%; align-items: center; justify-content: flex-start; gap: 12px; padding: 13px 16px; border-radius: 12px; font-size: 16px; }
+.nav-actions .users-label { display: inline !important; }
+.nav-actions .users-count { margin-left: auto; }
+.nav-actions .user-badge { display: inline-block !important; margin-left: auto; }
+.nav-actions .google-login svg, .nav-actions .users-btn svg { width: 20px; height: 20px; flex: none; }
+.nav-menu .nav-buy { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px; padding: 15px; border-radius: 99px;
+  font: 800 16px 'Inter', system-ui, sans-serif; color: #fff; background: linear-gradient(135deg, var(--red-primary), var(--red-glow)); box-shadow: 0 0 24px rgba(18,181,255,.45); }
+.nav-menu .nav-lang { display: flex; align-items: center; justify-content: space-between; padding: 12px 8px 4px; color: var(--gray-text); font: 600 14px 'Inter', system-ui, sans-serif; }
+.sticky-header > .header-right { gap: 0; }
+@media (max-width: 640px) { .nav-menu { left: 0; width: auto; } }
+
+
+/* menu language switch: same look as the chat toggle */
+.nav-menu .nav-lang { padding: 14px 8px 4px; font-size: 15px; }
+.nav-menu .lang-switch { padding: 3px; gap: 2px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(18,181,255,.4); }
+.nav-menu .lang-btn { padding: 8px 18px; font: 800 13px var(--font-title); border-radius: 999px; opacity: .6; color: #fff; transition: .2s; }
+.nav-menu .lang-btn.active { opacity: 1; background: linear-gradient(135deg, var(--red-primary), var(--blue-secondary)); box-shadow: 0 0 12px rgba(18,181,255,.55); }
+body.menu-open .ffai-fab { opacity: 0; pointer-events: none; transform: translateY(10px); }
+
+
+/* ===== NO PULSING GLOW (static glow only) ===== */
+.brand .brand-logo, .brand .brand-icon { animation: none !important; filter: drop-shadow(0 0 6px rgba(18,181,255,.35)); }
+.brand:hover .brand-logo, .brand:hover .brand-icon { animation: iconSpin .9s cubic-bezier(.5,0,.2,1) !important; }
+.ffai-fab::before { animation: none !important; box-shadow: none !important; }
+.hero-art::before { animation: none !important; opacity: .8; }
+.guarantee { animation: none !important; }
+/* FF AI icon upgrade */
+.ffai-lang { display: inline-flex; align-items: center; gap: 2px; padding: 3px; height: 32px; }
+.ffai-lang span { padding: 4px 10px; border-radius: 999px; opacity: .55; transition: .2s; line-height: 1; }
+.ffai-lang span.on { opacity: 1; color: #fff; background: linear-gradient(135deg, var(--red-primary), var(--blue-secondary)); box-shadow: 0 0 10px rgba(18,181,255,.5); }
+
+.ffai-fab { padding: 8px 18px 8px 8px; gap: 10px; position: fixed; box-shadow: 0 8px 28px rgba(18,181,255,.5), inset 0 1px 0 rgba(255,255,255,.35); }
+.ffai-fab::before { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 0 rgba(18,181,255,.6); animation: ffaiPulse 2.4s ease-out infinite; pointer-events: none; }
+@keyframes ffaiPulse { 0% { box-shadow: 0 0 0 0 rgba(18,181,255,.55); } 70%,100% { box-shadow: 0 0 0 16px rgba(18,181,255,0); } }
+.ffai-fab .ffai-ico { width: 38px; height: 38px; padding: 6px; border-radius: 50%; background: rgba(5,10,25,.35); border: 1px solid rgba(255,255,255,.35); flex: none; animation: ffaiFloat 3.2s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(255,255,255,.5)); }
+@keyframes ffaiFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+.ffai-ico .eye { transform-box: fill-box; transform-origin: center; animation: ffaiBlink 4s infinite; }
+@keyframes ffaiBlink { 0%,92%,100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+.ffai-ico .ant { animation: ffaiAnt 1.6s ease-in-out infinite; }
+@keyframes ffaiAnt { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+.ffai-ico .spark { transform-box: fill-box; transform-origin: center; animation: ffaiSpark 2.2s ease-in-out infinite; }
+@keyframes ffaiSpark { 0%,100% { transform: scale(.6) rotate(0); opacity: .6; } 50% { transform: scale(1.15) rotate(90deg); opacity: 1; } }
+.ffai-dot { position: absolute; top: 6px; left: 36px; width: 11px; height: 11px; border-radius: 50%; background: #2ee66b; border: 2px solid #0b1020; box-shadow: 0 0 8px #2ee66b; }
+.ffai-hl { display: flex; align-items: center; gap: 12px; }
+.ffai-badge { width: 42px; height: 42px; flex: none; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--red-primary), var(--blue-secondary)); box-shadow: 0 0 16px rgba(18,181,255,.55); }
+.ffai-badge .ffai-ico { width: 28px; height: 28px; }
+@media (max-width: 520px) { .ffai-fab { padding: 8px; } .ffai-dot { left: auto; right: 6px; } }
+@media (prefers-reduced-motion: reduce) { .ffai-fab::before, .ffai-fab .ffai-ico, .ffai-ico * { animation: none !important; } }
+
+/* ===== SENSI FINDER ===== */
+.sf-btn { padding: 11px 20px; border-radius: 999px; cursor: pointer; font: 800 13px var(--font-title); letter-spacing: 1px; color: #fff; border: 1px solid rgba(18,181,255,.45); background: rgba(18,181,255,.12); }
+
+/* SENSI PACKS */
+.sp-title { text-align: center; margin: 0 auto 18px; font: 800 18px var(--font-title); letter-spacing: 1px; }
+.sp-grid { max-width: 860px; margin: 0 auto 26px; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+.sp-card { padding: 18px; border-radius: 20px; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)), var(--bg-card); border: 1px solid var(--gray-border); transition: .25s; }
+.sp-card:hover { border-color: rgba(18,181,255,.5); box-shadow: 0 12px 30px rgba(18,181,255,.14); transform: translateY(-3px); }
+.sp-card h4 { font: 900 22px var(--font-title); color: var(--red-primary); margin-bottom: 10px; }
+.sp-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed rgba(255,255,255,.08); font: 600 15px var(--font-body); color: var(--gray-text); }
+.sp-row b { color: var(--white); font-family: var(--font-title); }
+.sp-card .sf-btn { width: 100%; margin-top: 12px; padding: 9px; }
+.sp-range { max-width: 860px; margin: 0 auto 60px; }
+.sp-range .sp-row { font-size: 16px; }
+
+/* ===== DUNE-STYLE FONT OVERRIDE: thin, geometric, wide-tracked ===== */
+.brand .brand-text { font: 700 24px/1 var(--font-title); letter-spacing: .22em; text-transform: uppercase; }
+.hero h1 { font-family: var(--font-title); font-weight: 700; letter-spacing: .06em; }
+.hero-title, .yt-name { font-family: var(--font-title); font-weight: 700; letter-spacing: .08em; }
+.nav-link, .buy-now { font-family: var(--font-title); font-weight: 600; letter-spacing: .1em; }
+h1, h2, h3, h4 { font-family: var(--font-title); letter-spacing: .08em; }
+#intro .ib { font-weight: 500; }
 </style>
 </head>
 <body>
@@ -1087,11 +1200,7 @@ header.sticky-header { border-radius: 999px; padding: 10px 22px; }
  <a href="#vip" class="nav-link">VIP</a>
  <a href="#faq" class="nav-link">FAQ</a>
  <a href="#support" class="nav-link">Support</a>
- <a class="nav-buy" href="https://wa.me/94718791277?text=I%20want%20to%20buy%20an%20APELAX%20pack" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>BUY NOW</a>
- <div class="nav-lang"><span>Language</span><div class="lang-switch"><button class="lang-btn active" data-lang="en">EN</button><button class="lang-btn" data-lang="si">සිං</button></div></div>
- </nav>
- <div class="header-right">
- <a class="buy-now" href="https://wa.me/94718791277?text=I%20want%20to%20buy%20an%20APELAX%20pack" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>BUY NOW</a>
+ <div class="nav-actions">
   <button type="button" class="users-btn" id="usersBtn" aria-haspopup="true" aria-expanded="false" aria-controls="usersPanel" title="Users">
  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM8 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05A4.2 4.2 0 0 1 17 16.5V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
  <span class="users-label">Users</span><span class="users-count" id="usersCount" hidden>0</span>
@@ -1106,11 +1215,12 @@ header.sticky-header { border-radius: 999px; padding: 10px 22px; }
  <span>Login</span>
  </a>
  </span>
- <div class="lang-switch" aria-label="Language">
- <button class="lang-btn active" data-lang="en">EN</button>
- <button class="lang-btn" data-lang="si">සිං</button>
  </div>
- <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navMenu" onclick="toggleMenu()">☰</button>
+ <a class="nav-buy" href="https://wa.me/94718791277?text=I%20want%20to%20buy%20an%20APELAX%20pack" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>BUY NOW</a>
+ <div class="nav-lang"><span>Language</span><div class="lang-switch"><button class="lang-btn active" data-lang="en">EN</button><button class="lang-btn" data-lang="si">සිං</button></div></div>
+ </nav>
+ <div class="header-right">
+  <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navMenu" onclick="toggleMenu()">☰</button>
  </div>
 </header>
 
@@ -1685,6 +1795,11 @@ header.sticky-header { border-radius: 999px; padding: 10px 22px; }
  </div>
  </section>
 
+ <!-- SENSI PACKS -->
+ <section id="sensi">
+ <div id="sfPacks"></div>
+ </section>
+
  <!-- 7. WHY APELAX OPTIMIZE -->
  <section>
  <div class="section-title">
@@ -1832,7 +1947,7 @@ const ONLINE_MS = 5 * 60 * 1000;
 let unsubUsers = null, heartbeat = null;
 
 function placeUsersPanel(){
- const r = usersBtn.getBoundingClientRect();
+ const r = document.getElementById('hamburgerBtn').getBoundingClientRect();
  const w = Math.min(320, window.innerWidth - 24);
  usersPanel.style.top = (r.bottom + 8) + 'px';
  usersPanel.style.left = Math.max(12, Math.min(r.right - w, window.innerWidth - w - 12)) + 'px';
@@ -1903,6 +2018,7 @@ function stopUsers(){
 }
 stopUsers();
 
+const isSiLang = () => { try { return localStorage.getItem('apelax-language') === 'si'; } catch (_) { return false; } };
 /* ===== WISHLIST: saved per logged-in user in Firestore (users/{uid}.wishlist) ===== */
 const wishBtn = document.getElementById('wishBtn');
 const wishPanel = document.getElementById('wishPanel');
@@ -1912,7 +2028,7 @@ const wishTotal = document.getElementById('wishTotal');
 let wishItems = [], unsubWish = null;
 
 function placeWishPanel(){
- const r = wishBtn.getBoundingClientRect();
+ const r = document.getElementById('hamburgerBtn').getBoundingClientRect();
  const w = Math.min(320, window.innerWidth - 24);
  wishPanel.style.top = (r.bottom + 8) + 'px';
  wishPanel.style.left = Math.max(12, Math.min(r.right - w, window.innerWidth - w - 12)) + 'px';
@@ -1964,7 +2080,7 @@ function renderWishlist(){
 }
 async function toggleWishItem(name){
  if (!auth || !auth.currentUser) {
-  alert('Wishlist ekata add karanna kalin Login wenna.');
+  alert(isSiLang() ? 'කැමති ලැයිස්තුවට එකතු කරන්න කලින් Login වෙන්න.' : 'Please log in to add tools to your wishlist.');
   googleLogin();
   return;
  }
@@ -1979,7 +2095,7 @@ async function toggleWishItem(name){
   console.warn('Wishlist: could not save', err);
   wishItems = has ? [...wishItems, name] : wishItems.filter(x => x !== name);
   renderWishlist();
-  alert("Wishlist save wenne naha. Poddak inna passe aye try karanna.");
+  alert(isSiLang() ? 'කැමති ලැයිස්තුව save කරන්න බැරි වුණා. පොඩ්ඩක් ඉඳලා ආයෙ try කරන්න.' : "Couldn't save your wishlist. Please try again in a moment.");
  }
 }
 function startWishlist(user){
@@ -2166,6 +2282,7 @@ function toggleFaq(card) {
 function setMenu(open) {
  var menu = document.getElementById('navMenu'), btn = document.getElementById('hamburgerBtn');
  menu.classList.toggle('open', open);
+ document.body.classList.toggle('menu-open', open);
  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
  btn.textContent = open ? '\u2715' : '\u2630';
 }
@@ -2178,7 +2295,8 @@ document.addEventListener('click', function (e) {
  if (e.target.closest('#navMenu a') || !e.target.closest('.sticky-header')) setMenu(false);
 });
 document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
-window.addEventListener('resize', function () { if (window.innerWidth > 900) setMenu(false); });
+['usersBtn','wishBtn'].forEach(function (id) { var b = document.getElementById(id); if (b) b.addEventListener('click', function () { setMenu(false); }); });
+document.addEventListener('click', function (e) { if (e.target.closest('#googleLoginBtn, #googleLogoutBtn')) setMenu(false); });
 
 function saveTool(btn){
  const name=btn.closest('.tool-card').querySelector('h3').textContent.trim();
@@ -2296,6 +2414,46 @@ document.addEventListener('DOMContentLoaded',loadSaved);
 </script>
 
 <script>
+/* TRANSLATION LAYER 2: wishlist, users panel, ticker, Sensi Finder, packs (EN <-> Sinhala) */
+(function(){
+ var M2={
+  "Wishlist":"කැමති ලැයිස්තුව","Users":"පරිශීලකයින්","Menu":"මෙනුව","Open FF AI assistant":"FF AI විවෘත කරන්න","Switch language":"භාෂාව මාරු කරන්න","My Wishlist":"මගේ කැමති ලැයිස්තුව","online":"සක්‍රීය","visitors online now":"දැන් online ඉන්න අමුත්තන්",
+  "24/7 SUPPORT":"24/7 සහාය","INSTANT ACCESS":"ක්ෂණික ප්‍රවේශය","FREE TOOLS":"නොමිලේ ටූල්ස්","APELAX VERIFIED":"APELAX සත්‍යාපිතයි","REGULAR UPDATES":"නිතර යාවත්කාලීන",
+  "Get a starting sensitivity for your device and play style":"ඔබේ ෆෝන් එකට සහ ක්‍රීඩා විලාසයට ගැළපෙන ආරම්භක sensitivity එකක් ගන්න",
+  "SCREEN SIZE":"තිරයේ ප්‍රමාණය","Small (under 6.0\")":"කුඩා (6.0\" ට අඩු)","Normal (6.0\" - 6.8\")":"සාමාන්‍ය (6.0\" - 6.8\")","Large / Tablet (7\"+)":"විශාල / Tablet (7\"+)",
+  "PLAY STYLE":"ක්‍රීඩා විලාසය","Drag headshot (fast)":"Drag headshot (වේගවත්)","Balanced":"සමතුලිත","Control (steady aim)":"Control (ස්ථාවර aim)",
+  "DEVICE POWER":"ෆෝන් එකේ බලය","Low-end (2-3 GB RAM)":"අඩු මට්ටම (2-3 GB RAM)","Mid-range (4-6 GB)":"මධ්‍යම මට්ටම (4-6 GB)","High-end (8 GB+ / iPhone)":"ඉහළ මට්ටම (8 GB+ / iPhone)",
+  "GET MY SENSI":"මගේ SENSI ගන්න","AUTO-DETECT MY DEVICE":"මගේ ෆෝන් එක AUTO-DETECT කරන්න","COPY VALUES":"අගයන් COPY කරන්න","COPY":"COPY","RECOMMENDED RANGES":"නිර්දේශිත RANGES",
+  "Higher = faster movement, lower if your crosshair shakes":"වැඩි = වේගවත් චලනය, crosshair එක වෙව්ලනවා නම් අඩු කරන්න","Close-range tracking and quick headshots":"ළඟ දුර tracking සහ වේගවත් headshots",
+  "Mid-range stability":"මධ්‍යම දුර ස්ථායිතාව","Longer-range sprays":"දුර ප්‍රහාර (sprays)","Steady drag precision for sniper shots":"Sniper වෙඩි සඳහා ස්ථාවර drag නිරවද්‍යතාව","Smooth camera rotation while running":"දුවන අතරේ සුමට camera rotation",
+  "Device model (optional) e.g. Redmi Note 12, Galaxy A54, iPhone 13":"ෆෝන් model එක (අවශ්‍ය නම්) e.g. Redmi Note 12, Galaxy A54, iPhone 13",
+  "Login to see your wishlist.":"ඔබේ කැමති ලැයිස්තුව බලන්න Login වෙන්න.",
+  "Your wishlist is empty. Tap ☆ on any tool to add it.":"ඔබේ කැමති ලැයිස්තුව හිස්. ඕනෑම ටූල් එකක ☆ එබුවම එකතු වෙනවා.",
+  "Login to see who is here.":"මෙහි කවුද ඉන්නේ කියලා බලන්න Login වෙන්න.","No users yet.":"තාම පරිශීලකයින් නෑ.",
+  "Can't load users right now.":"දැන් පරිශීලකයින් load කරන්න බෑ.","Can't load wishlist right now.":"දැන් කැමති ලැයිස්තුව load කරන්න බෑ.","Online":"Online","Reply language: AUTO / EN / සිං":"පිළිතුරු භාෂාව: AUTO / EN / සිං"
+ };
+ var R=[[/^(\d+) saved$/,"$1 සුරකිලා"],[/^(\d+)m ago$/,"විනාඩි $1කට පෙර"],[/^(\d+)h ago$/,"පැය $1කට පෙර"],[/^(\d+)d ago$/,"දින $1කට පෙර"],[/^Welcome, (.+)!$/,"සාදරයෙන් පිළිගනිමු, $1!"]];
+ function conv(t){ if(M2[t]!==undefined) return M2[t]; for(var i=0;i<R.length;i++){ if(R[i][0].test(t)) return t.replace(R[i][0],R[i][1]); } return null; }
+ function tn(n,si){ var v=n.nodeValue,t=v.trim(); if(!t) return;
+  if(si){ var c=conv(t); if(c!==null){ if(n.__en2===undefined) n.__en2=v; n.nodeValue=v.replace(t,c); } }
+  else if(n.__en2!==undefined){ n.nodeValue=n.__en2; n.__en2=undefined; } }
+ function walk(root,si){ var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode&&n.parentNode.nodeName;return(p==='SCRIPT'||p==='STYLE')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}}),a=[],n;
+  while((n=w.nextNode()))a.push(n); a.forEach(function(x){tn(x,si);}); }
+ var ATTRS=['placeholder','title','aria-label'];
+ function attrs(root,si){ var els=(root.querySelectorAll?root.querySelectorAll('[placeholder],[title],[aria-label]'):[]); var list=Array.prototype.slice.call(els); if(root.getAttribute) list.unshift(root);
+  list.forEach(function(el){ ATTRS.forEach(function(a){ var k='en2_'+a.replace(/-/g,'_'), v=el.getAttribute&&el.getAttribute(a); if(v===null||v===undefined) return;
+   if(si){ var c=M2[v]; if(c!==undefined){ if(el.dataset[k]===undefined) el.dataset[k]=v; el.setAttribute(a,c); } }
+   else if(el.dataset&&el.dataset[k]!==undefined){ el.setAttribute(a,el.dataset[k]); delete el.dataset[k]; } }); }); }
+ var lang='en'; try{ lang=localStorage.getItem('apelax-language')||'en'; }catch(_){}
+ function run(l){ lang=l; walk(document.body,l==='si'); attrs(document.body,l==='si'); }
+ new MutationObserver(function(ms){ if(lang!=='si') return; ms.forEach(function(m){ m.addedNodes.forEach(function(x){ if(x.nodeType===3) tn(x,true); else if(x.nodeType===1){ walk(x,true); attrs(x,true); } }); }); }).observe(document.body,{childList:true,subtree:true});
+ document.querySelectorAll('.lang-btn').forEach(function(b){ b.addEventListener('click',function(){ run(b.dataset.lang); }); });
+ run(lang);
+})();
+</script>
+
+
+<script>
 (function () {
   var fx = document.getElementById('fx');
   for (var n = 0; n < 40; n++) {
@@ -2403,6 +2561,295 @@ function togglePack(btn) {
  size();addEventListener('resize',size);
  document.addEventListener('visibilitychange',function(){run=!document.hidden;if(run)requestAnimationFrame(loop);});
  if(reduce)step(0);else requestAnimationFrame(loop);
+})();
+</script>
+
+<button type="button" class="ffai-fab" id="ffaiFab" aria-expanded="false" aria-controls="ffaiPanel" aria-label="Open FF AI assistant"><svg class="ffai-ico" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="ffaiG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe9ff"/></linearGradient></defs><line x1="16" y1="3.5" x2="16" y2="8" stroke="url(#ffaiG)" stroke-width="2" stroke-linecap="round"/><circle class="ant" cx="16" cy="3.2" r="2.2" fill="#fff"/><rect x="5" y="8.5" width="22" height="17" rx="6.5" fill="url(#ffaiG)"/><rect x="2" y="14" width="3" height="6" rx="1.5" fill="#fff" opacity=".85"/><rect x="27" y="14" width="3" height="6" rx="1.5" fill="#fff" opacity=".85"/><rect x="8.5" y="12" width="15" height="9.5" rx="4" fill="#07142b"/><ellipse class="eye" cx="13" cy="16" rx="1.9" ry="2.3" fill="#12B5FF"/><ellipse class="eye" cx="19" cy="16" rx="1.9" ry="2.3" fill="#12B5FF"/><path d="M13.2 19.4q2.8 1.6 5.6 0" stroke="#6A7BFF" stroke-width="1.3" fill="none" stroke-linecap="round"/><path class="spark" d="M27 2.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="#fff"/></svg><span class="t">FF AI</span><i class="ffai-dot"></i></button>
+<div class="ffai-panel" id="ffaiPanel" role="dialog" aria-label="FF AI assistant">
+ <div class="ffai-head"><div class="ffai-hl"><span class="ffai-badge"><svg class="ffai-ico" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="ffaiG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe9ff"/></linearGradient></defs><line x1="16" y1="3.5" x2="16" y2="8" stroke="url(#ffaiG2)" stroke-width="2" stroke-linecap="round"/><circle class="ant" cx="16" cy="3.2" r="2.2" fill="#fff"/><rect x="5" y="8.5" width="22" height="17" rx="6.5" fill="url(#ffaiG2)"/><rect x="2" y="14" width="3" height="6" rx="1.5" fill="#fff" opacity=".85"/><rect x="27" y="14" width="3" height="6" rx="1.5" fill="#fff" opacity=".85"/><rect x="8.5" y="12" width="15" height="9.5" rx="4" fill="#07142b"/><ellipse class="eye" cx="13" cy="16" rx="1.9" ry="2.3" fill="#12B5FF"/><ellipse class="eye" cx="19" cy="16" rx="1.9" ry="2.3" fill="#12B5FF"/><path d="M13.2 19.4q2.8 1.6 5.6 0" stroke="#6A7BFF" stroke-width="1.3" fill="none" stroke-linecap="round"/><path class="spark" d="M27 2.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="#fff"/></svg></span><div><b>APELAX FF AI</b><small id="ffaiSub">Free Fire tips, lag fixes &amp; tool finder</small></div></div><div class="ffai-hbtns"><button type="button" class="ffai-x ffai-lang" id="ffaiLang" title="Switch language">EN</button><button type="button" class="ffai-x" id="ffaiClose" aria-label="Close">✕</button></div></div>
+ <div class="ffai-msgs" id="ffaiMsgs"></div>
+ <div class="ffai-chips" id="ffaiChips"></div>
+ <form class="ffai-form" id="ffaiForm" autocomplete="off"><input id="ffaiInput" type="text" placeholder="Ask about lag, sensi, DPI, tools..." maxlength="300"><button type="submit" id="ffaiSend">SEND</button></form>
+</div>
+
+<script>
+/* ===== SENSI DATA + PACKS (used by the Sensi Packs section and FF AI) =====
+ Values are STARTING POINTS made from play style + screen size (every phone/finger feels different).
+ To publish your own tested values for exact phones, add them to CUSTOM_DEVICES below, e.g.
+   "redmi note 12": {general:95, red:92, x2:88, x4:84, awm:80, free:50}
+ Any device name that CONTAINS the key will use those exact numbers and show "APELAX TESTED". */
+(function(){
+ var CUSTOM_DEVICES = {};
+ var BASE = {
+  drag:{general:100, red:98, x2:95, x4:90, awm:85, free:60},
+  bal: {general:85,  red:85, x2:80, x4:75, awm:70, free:55},
+  ctl: {general:70,  red:70, x2:65, x4:60, awm:55, free:45}
+ };
+ var OFF = {s:-5, n:0, l:8};
+ var LABEL = {general:'GENERAL', red:'RED DOT', x2:'2x SCOPE', x4:'4x SCOPE', awm:'AWM / SNIPER', free:'FREE LOOK'};
+ var STYLE_NAME = {drag:'Drag headshot', bal:'Balanced', ctl:'Control'};
+ var STYLE_SI = {drag:'Drag headshot', bal:'සමතුලිත', ctl:'Control'};
+ function sl(){ try{ return localStorage.getItem('apelax-language')==='si'; }catch(_){ return false; } }
+ var TIPS_SI = {
+  low:"අඩු මට්ටමේ ෆෝන් සඳහා: Graphics = Smooth සහ FPS = ඉහළම අගයට දාන්න. ලැග් එක sensitivity දැනීමට බලපානවා, ඒ නිසා මුලින්ම ලැග් එක විසඳගන්න (පහළ Lag Fix ටූල්ස් පාවිච්චි කරන්න).",
+  mid:"මධ්‍යම මට්ටමේ ෆෝන් සඳහා: Graphics Smooth/Standard සහ FPS High සාමාන්‍යයෙන් හොඳම වේ. Ranked යන්න කලින් training ground එකේ විනාඩි 5ක් test කරන්න.",
+  high:"ඉහළ මට්ටමේ ෆෝන් සඳහා: තියෙන ඉහළම FPS option එක පාවිච්චි කරන්න. සුමට game එකක් නිසා වේගවත් flicks control කරන්න ලේසියි."
+ };
+ var TIPS = {
+  low:"Low-end tip: set Graphics to Smooth and FPS to the highest it allows. Lag changes how sensitivity feels, so fix lag first (use the Lag Fix tools below).",
+  mid:"Mid-range tip: Graphics Smooth/Standard with FPS High usually feels best. Test in training ground for 5 minutes before ranked.",
+  high:"High-end tip: use the highest FPS option available. A smoother game makes fast flicks easier to control."
+ };
+ function $(id){ return document.getElementById(id); }
+ 
+ function clamp(n){ return Math.max(1, Math.min(200, Math.round(n))); }
+ function find(dev){ dev=(dev||'').toLowerCase().trim(); if(!dev) return null;
+  for(var k in CUSTOM_DEVICES){ if(dev.indexOf(k.toLowerCase())>-1) return CUSTOM_DEVICES[k]; } return null; }
+
+ /* ---- SENSI PACKS (100X-180X) + recommended ranges ---- */
+ var PACKS=[
+  {n:'100X', general:100, red:95,  x2:90,  x4:85,  awm:80},
+  {n:'120X', general:120, red:110, x2:105, x4:100, awm:95},
+  {n:'140X', general:140, red:130, x2:125, x4:120, awm:115},
+  {n:'160X', general:160, red:150, x2:145, x4:140, awm:135},
+  {n:'180X', general:180}
+ ];
+ var RANGE={general:[130,160], red:[120,150], x2:[100,130], x4:[80,110], awm:[60,90], free:[100,130]};
+ var RNOTE={general:'Higher = faster movement, lower if your crosshair shakes', red:'Close-range tracking and quick headshots', x2:'Mid-range stability', x4:'Longer-range sprays', awm:'Steady drag precision for sniper shots', free:'Smooth camera rotation while running'};
+ function packLine(p){ var o=[]; for(var k in LABEL){ if(p[k]!=null) o.push(LABEL[k].replace('AWM / SNIPER','AWM').replace('2x SCOPE','2x').replace('4x SCOPE','4x').replace('GENERAL','General').replace('RED DOT','Red Dot')+' '+p[k]); } return o.join(' \u2022 '); }
+ var host=$('sfPacks');
+ if(host){
+  var h='<div class="sp-title">SENSI PACKS (100X - 180X)</div><div class="sp-grid">';
+  PACKS.forEach(function(p,i){ h+='<div class="sp-card"><h4>'+p.n+'</h4>';
+   for(var k in LABEL){ if(k==='free') continue; h+='<div class="sp-row"><span>'+LABEL[k]+'</span><b>'+(p[k]!=null?p[k]:'-')+'</b></div>'; }
+   h+='<button type="button" class="sf-btn" data-p="'+i+'">COPY</button></div>'; });
+  h+='</div><div class="sp-title">RECOMMENDED RANGES</div><div class="sp-card sp-range">';
+  for(var k2 in RANGE) h+='<div class="sp-row"><span>'+LABEL[k2]+'<br><small>'+RNOTE[k2]+'</small></span><b>'+RANGE[k2][0]+' - '+RANGE[k2][1]+'</b></div>';
+  h+='</div>'; host.innerHTML=h;
+  host.addEventListener('click',function(e){ var b=e.target.closest('button[data-p]'); if(!b) return; var p=PACKS[+b.dataset.p], old=b.textContent;
+   var t='APELAX Sensi '+p.n+'\n'+packLine(p).split(' \u2022 ').join('\n');
+   (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){ b.textContent='COPIED \u2713'; }).catch(function(){ b.textContent='NOT SUPPORTED'; }).finally(function(){ setTimeout(function(){ b.textContent=old; },1500); }); });
+ }
+ window.apelaxPacks={PACKS:PACKS,RANGE:RANGE,RNOTE:RNOTE,line:packLine};
+ window.apelaxSensi={BASE:BASE,OFF:OFF,LABEL:LABEL,CUSTOM:CUSTOM_DEVICES,find:find,clamp:clamp};
+ window.apelaxOpenSensi=function(){ var e=$('sensi'); if(e) e.scrollIntoView({behavior:'smooth'}); };
+})();
+</script>
+
+<script>
+/* ===== FF AI ASSISTANT (English + Sinhala) =====
+ Replies in the language the user types: Sinhala script -> Sinhala, otherwise English.
+ The EN/සිං button in the chat header can force a language (AUTO -> EN -> සිං).
+ Works offline by default (built-in Free Fire knowledge + searches the tools on this page).
+ To use a real AI model, set FF_AI_ENDPOINT to YOUR OWN backend/proxy URL that holds the API key.
+ It receives POST {messages:[{role,content}], lang:"en"|"si"} and must return {reply:"..."}.
+ NEVER put an API key in this file - anyone can read it. */
+(function(){
+ var FF_AI_ENDPOINT = "";
+ var fab=document.getElementById('ffaiFab'), panel=document.getElementById('ffaiPanel'), box=document.getElementById('ffaiMsgs'),
+     chips=document.getElementById('ffaiChips'), form=document.getElementById('ffaiForm'), input=document.getElementById('ffaiInput'),
+     langBtn=document.getElementById('ffaiLang'), subEl=document.getElementById('ffaiSub'), sendBtn=document.getElementById('ffaiSend');
+ var history=[], busy=false, greeted=false, LANG='auto', awaitingDevice=false;
+
+ /* ---------- language helpers ---------- */
+ function isSi(t){ return /[\u0D80-\u0DFF]/.test(t||''); }
+ function siteLang(){ var v=''; try{ v=localStorage.getItem('apelax-language')||''; }catch(_){} return v==='si'?'si':'en'; }
+ function uiLang(){ return LANG==='auto'?siteLang():LANG; }
+ function replyLang(msg){ return LANG==='auto'?(isSi(msg)?'si':'en'):LANG; }
+
+ var UI={
+  en:{greet:"Hi! I'm the APELAX FF AI 👋 Ask me about lag, FPS, sensitivity, DPI, ping, graphics, HUD, rank tips or which tool to download. Type 'help' to see everything I can do.",
+      sub:"Free Fire tips, lag fixes & tool finder", ph:"Ask about lag, sensi, DPI, tools...", send:"SEND",
+      chips:['Fix lag / low FPS','Sensi for my phone','Sensi packs','DPI help','Reduce ping','Find a tool for me','What can you do?'],
+      show:'Show these in Tools ↓', open:'Open Tools ↓', sensi:'Open Sensi Packs ↓'},
+  si:{greet:"හායි! 👋 මම APELAX FF AI. ලැග්, FPS, sensitivity, DPI, ping හෝ ටූල්ස් ගැන මගෙන් අහන්න.",
+      sub:"Free Fire tips, ලැග් විසඳුම් සහ ටූල් සෙවුම", ph:"ලැග්, සෙන්සි, DPI, ටූල්ස් ගැන අහන්න...", send:"යවන්න",
+      chips:['ලැග් / FPS අඩුයි','මගේ ෆෝන් එකට සෙන්සි','සෙන්සි පැක්','DPI උදව්','පින්ග් අඩු කරන්න','මට ටූල් එකක් සොයන්න','ඔයාට මොනවද කරන්න පුළුවන්?'],
+      show:'මේවා Tools වල බලන්න ↓', open:'Tools විවෘත කරන්න ↓', sensi:'Sensi Packs විවෘත කරන්න ↓'}
+ };
+ function applyUI(){
+  var u=UI[uiLang()];
+  subEl.textContent=u.sub; input.placeholder=u.ph; sendBtn.textContent=u.send;
+  var ul=uiLang(); langBtn.innerHTML='<span class="'+(ul==='en'?'on':'')+'">EN</span><span class="'+(ul==='si'?'on':'')+'">සිං</span>'; langBtn.title=ul==='en'?'Switch to සිංහල':'Switch to English';
+  chips.innerHTML='';
+  u.chips.forEach(function(t){ var c=document.createElement('button'); c.type='button'; c.className='ffai-chip'; c.textContent=t; c.onclick=function(){ send(t); }; chips.appendChild(c); });
+ }
+ langBtn.onclick=function(){ var nx=uiLang()==='en'?'si':'en'; var t=document.querySelector('.lang-btn[data-lang="'+nx+'"]'); LANG='auto'; if(t){ t.click(); } else { LANG=nx; } applyUI(); };
+ document.querySelectorAll('.lang-btn').forEach(function(b){ b.addEventListener('click',function(){ setTimeout(applyUI,50); }); });
+
+ function add(text,cls){ var d=document.createElement('div'); d.className='ffai-m '+cls; d.textContent=text; box.appendChild(d); box.scrollTop=box.scrollHeight; return d; }
+ function action(label,fn){ var b=document.createElement('button'); b.type='button'; b.className='ffai-act'; b.textContent=label; b.onclick=fn; box.appendChild(b); box.scrollTop=box.scrollHeight; }
+ function toggle(open){ if(open===undefined) open=!panel.classList.contains('open'); panel.classList.toggle('open',open); fab.setAttribute('aria-expanded',String(open));
+  if(open&&!greeted){ greeted=true; add(UI[uiLang()].greet,'bot'); }
+  if(open) setTimeout(function(){input.focus();},50); }
+ fab.onclick=function(){toggle();}; document.getElementById('ffaiClose').onclick=function(){toggle(false);};
+ document.addEventListener('keydown',function(e){ if(e.key==='Escape') toggle(false); });
+ applyUI();
+
+ function tools(){ return Array.prototype.map.call(document.querySelectorAll('.tool-card'),function(c){
+  var h=c.querySelector('h3'); return { name:h?h.textContent.trim():'', text:c.textContent.toLowerCase().replace(/\s+/g,' '), cat:(c.dataset.category||'') }; }).filter(function(t){return t.name;}); }
+ function goTools(q){ var si=document.getElementById('toolSearch'); if(si){ si.value=q||''; si.dispatchEvent(new Event('input')); }
+  var t=document.getElementById('tools'); if(t) t.scrollIntoView({behavior:'smooth'}); toggle(false); }
+
+ /* ---------- knowledge base (en + si) ---------- */
+ var KB=[
+  {k:/^help[?!. ]*$|^\/help|what can you do|your skills|^skills?\b|^commands?$|^menu$|ඔයාට මොනවද|මොනවද කරන්න පුළුවන්|ඔයාගේ ස්කිල්/, t:null,
+   a:"Here's what I can do 👇\n⚡ Lag / FPS fixes\n🎯 Sensitivity for your phone (type the model name)\n📦 Sensi packs (100X–180X) & recommended ranges\n🖥 DPI help\n🌐 Ping / network tips\n🔥 Overheating fixes\n⚙️ Best graphics & in-game settings\n🖐 HUD layout & finger (claw) tips\n🎯 Aim training\n🏆 Rank push, landing & gameplay tips\n🎭 Characters\n🧹 Storage / cache cleaning\n💥 Crash / won't-open fixes\n🛠 Find a tool on this page\n💬 Contact the APELAX team (WhatsApp, Discord, YouTube, TikTok)\n💡 Say 'tip' for a random tip\n🧼 Say 'clear' to restart the chat\n\nJust type your question in English or සිංහල!",
+   s:"මට කරන්න පුළුවන් දේවල් 👇\n⚡ ලැග් / FPS විසඳුම්\n🎯 ඔබේ ෆෝන් එකට Sensitivity (model නම ටයිප් කරන්න)\n📦 Sensi packs (100X–180X) සහ නිර්දේශිත ranges\n🖥 DPI උදව්\n🌐 Ping / network ටිප්ස්\n🔥 රත් වීම අඩු කිරීම\n⚙️ හොඳම graphics සහ in-game settings\n🖐 HUD layout සහ ඇඟිලි (claw) ටිප්ස්\n🎯 Aim training\n🏆 Rank push, landing සහ gameplay ටිප්ස්\n🎭 Characters\n🧹 Storage / cache පිරිසිදු කිරීම\n💥 Crash / ඕපන් නොවන ගැටළු\n🛠 මේ පිටුවේ ටූල් සෙවීම\n💬 APELAX team එක සම්බන්ධ කරගන්න (WhatsApp, Discord, YouTube, TikTok)\n💡 'ටිප් එකක්' කිව්වම random ටිප් එකක් දෙනවා\n🧼 'clear' කිව්වම චැට් එක අලුත් වෙනවා\n\nඉංග්‍රීසියෙන් හෝ සිංහලෙන් ඕනෙ දෙයක් අහන්න!"},
+  {k:/who are you|your name|are you (a )?(bot|ai|robot|real|human)|ඔයා කවුද|ඔයාගේ නම/, t:null,
+   a:"I'm APELAX FF AI 🤖 - a built-in helper for Free Fire tips, lag fixes, sensitivity and finding tools. I run right here on this page. I'm not a human, but the APELAX team is on WhatsApp if you need them.",
+   s:"මම APELAX FF AI 🤖 - Free Fire ටිප්ස්, ලැග් විසඳුම්, sensitivity සහ ටූල් සෙවීම සඳහා මේ පිටුවේම තියෙන සහායකයා. මම මනුස්සයෙක් නෙවෙයි, ඒත් APELAX team එකත් එක්ක කතා කරන්න ඕනෙ නම් WhatsApp හරහා පුළුවන්.",
+   l:[['💬 WhatsApp','https://wa.me/94718791277']]},
+  {k:/^(thanks|thank you|thx|ty)\b|^(ස්තුති|ස්තූති|තෑන්ක්ස්)/, t:null,
+   a:"You're welcome! 😊 Ask me anything else about Free Fire.", s:"ඕනෙ දෙයක්! 😊 Free Fire ගැන තව මොනවා හරි අහන්න."},
+  {k:/^(bye|goodbye|see you|cya)\b|^(බායි|ගිහින් එන්නම්)/, t:null,
+   a:"See you in the lobby! 🎮 Good luck and good games!", s:"ලොබි එකේදී හම්බවෙමු! 🎮 ජය වේවා!"},
+  {k:/tip of the (day|moment)|random tip|^(give me )?(a )?tips?$|ටිප් එකක්|දවසේ ටිප්/, t:null,
+   a:["💡 Tip: Warm up in the training ground for 5 minutes before every ranked match.","💡 Tip: Use headphones - footsteps tell you where enemies are before you see them.","💡 Tip: Always check the safe-zone direction as soon as you land.","💡 Tip: Don't heal in the open. Find cover first.","💡 Tip: Keep your phone cool - heat causes lag and FPS drops.","💡 Tip: Change only ONE sensitivity slider at a time.","💡 Tip: Turn on Do Not Disturb so notifications don't interrupt your game.","💡 Tip: Charge your phone before long sessions, but avoid charging while playing."],
+   s:["💡 ටිප්: හැම ranked match එකකටම කලින් training ground එකේ විනාඩි 5ක් warm-up වෙන්න.","💡 ටිප්: Headphones පාවිච්චි කරන්න - සතුරන් පේන්න කලින් පා ශබ්දයෙන් දැනගන්න පුළුවන්.","💡 ටිප්: Land වුණාම safe-zone දිශාව හැමවිටම බලන්න.","💡 ටිප්: Open ground එකේ heal වෙන්න එපා - මුලින් cover එකක් හොයාගන්න.","💡 ටිප්: ෆෝන් එක සීතලට තියාගන්න - රත් වුණාම ලැග් එනවා, FPS අඩු වෙනවා.","💡 ටිප්: Sensitivity slider එක වතාවකට එකක් විතරක් වෙනස් කරන්න.","💡 ටිප්: Do Not Disturb on කරන්න, notifications වලින් ගේම් එකට බාධා නොවෙන්න.","💡 ටිප්: දිගු session වලට කලින් charge කරගන්න, ඒත් ගේම් කරන ගමන් charge කරන්න එපා."]},
+  {k:/crash|not opening|won'?t open|doesn'?t open|force close|black screen|stuck (on )?load|keeps closing|not working|වැඩ නෑ|ඕපන් වෙන්නේ නෑ|කැඩෙනවා/, t:null,
+   a:"Game crashing or not opening? Try this in order:\n1. Restart the phone.\n2. Clear the game's cache (Settings > Apps > Free Fire > Storage > Clear cache). Don't tap 'Clear data' unless your account is linked!\n3. Make sure you have 3GB+ free storage and enough free RAM.\n4. Update the game and your phone's OS.\n5. Lower graphics and turn off battery saver.\n6. Check your internet - try switching between Wi-Fi and mobile data.\n7. Still stuck? Uninstall and reinstall (link your account to Facebook/Google/Apple first).\n8. If nothing works, message the APELAX team on WhatsApp.",
+   s:"ගේම් එක crash වෙනවාද / ඕපන් වෙන්නේ නැද්ද? මේ පිළිවෙලට try කරන්න:\n1. ෆෝන් එක restart කරන්න.\n2. ගේම් එකේ cache clear කරන්න (Settings > Apps > Free Fire > Storage > Clear cache). ඔබේ account එක link කරලා නැත්නම් 'Clear data' කරන්න එපා!\n3. Storage 3GB+ free සහ ප්‍රමාණවත් RAM එකක් තියෙනවද බලන්න.\n4. ගේම් එක සහ ෆෝන් OS එක update කරන්න.\n5. Graphics අඩු කරලා battery saver off කරන්න.\n6. ඉන්ටර්නෙට් බලන්න - Wi-Fi සහ mobile data මාරු කරලා try කරන්න.\n7. තවමත් නැත්නම් uninstall කරලා ආයෙ install කරන්න (කලින් account එක Facebook/Google/Apple එකට link කරන්න).\n8. කිසිවක් වැඩ නැත්නම් WhatsApp එකෙන් APELAX team එකට කියන්න.",
+   l:[['💬 WhatsApp','https://wa.me/94718791277']]},
+  {k:/storage|cache|free up|junk|cleaner|clean up|ස්ටෝරේජ්|කැෂ්|ඉඩ අඩු/, t:null,
+   a:"Free up space & speed things up 🧹\n• Settings > Storage: delete big unused apps, old videos and duplicates.\n• Clear app caches (don't clear game data if your account isn't linked).\n• Move photos/videos to the cloud or an SD card.\n• Turn off auto-start for apps you don't use.\n• Keep 3-5GB free for smooth gameplay.\n• Restart the phone once a day if you game a lot.",
+   s:"ඉඩ හදාගෙන වේගය වැඩි කරගන්න 🧹\n• Settings > Storage: පාවිච්චි නොකරන ලොකු apps, පරණ videos, duplicates මකන්න.\n• App cache clear කරන්න (account එක link කරලා නැත්නම් game data clear කරන්න එපා).\n• Photos/videos cloud එකට හෝ SD card එකට මාරු කරන්න.\n• පාවිච්චි නොකරන apps වල auto-start off කරන්න.\n• සුමට gameplay සඳහා 3-5GB free තියාගන්න.\n• වැඩියෙන් ගේම් කරනවා නම් දිනපතා ෆෝන් එක එක වතාවක් restart කරන්න."},
+  {k:/graphics|\bhdr\b|shadows?|anti-?alias|ultra ?hd|ග්‍රැෆික්ස්|ග්‍රැෆික්/, t:'fps',
+   a:"Best in-game settings for smooth play ⚙️\n• Graphics: Smooth (or Standard if your phone is strong)\n• FPS: High / Max\n• Shadows: Off\n• Anti-aliasing / HDR / Ultra-HD: Off on weaker phones\n• Brightness: slightly lower saves battery and heat\n• Sound: keep footsteps clear, turn the music down\n• If graphics keep dropping on their own, turn off auto-adjust\nOptions vary by phone and game version. These tools can boost things further:",
+   s:"සුමටව ගේම් කරන්න හොඳම in-game settings ⚙️\n• Graphics: Smooth (ෆෝන් එක ශක්තිමත් නම් Standard)\n• FPS: High / Max\n• Shadows: Off\n• Anti-aliasing / HDR / Ultra-HD: දුර්වල ෆෝන් වල Off කරන්න\n• Brightness: පොඩ්ඩක් අඩු කළොත් battery එකත් රත් වීමත් අඩුයි\n• Sound: පා ශබ්ද පැහැදිලිව ඇහෙන්න තියලා music අඩු කරන්න\n• Graphics නිතර අඩු වෙනවා නම් auto-adjust off කරන්න\nSettings ෆෝන් එක සහ game version එක අනුව වෙනස් වෙනවා. තව boost සඳහා ටූල්ස් බලන්න:"},
+  {k:/\bhud\b|layout|claw|finger|thumb|button position|ඇඟිලි|ක්ලෝ/, t:null,
+   a:"HUD & finger tips 🖐\n• 2 fingers (beginners): fire button on the right, move with your left thumb.\n• 3 fingers: add a second fire button on the left edge so your index finger shoots while your thumb aims.\n• 4 fingers (claw): both index fingers for fire/scope, thumbs for move and aim.\n• Make the fire button bigger and place it where your finger naturally rests.\n• Keep jump, crouch and reload within easy reach.\n• Make buttons slightly transparent so you can see the screen.\n• Practice 10 minutes in the training ground before ranked.\nChange only one thing at a time.",
+   s:"HUD සහ ඇඟිලි ටිප්ස් 🖐\n• ඇඟිලි 2 (අලුත් අයට): Fire button එක දකුණේ, වමේ මහපටැඟිල්ලෙන් ගමන් කරන්න.\n• ඇඟිලි 3: වම් කෙළවරේ දෙවැනි Fire button එකක් දාලා, දබරැඟිල්ලෙන් වෙඩි තියලා මහපටැඟිල්ලෙන් aim කරන්න.\n• ඇඟිලි 4 (claw): fire/scope සඳහා දබරැඟිලි දෙක, ගමන සහ aim සඳහා මහපටැඟිලි දෙක.\n• Fire button එක ලොකු කරලා ඇඟිල්ල ස්වභාවිකව තියෙන තැනට දාන්න.\n• Jump, crouch, reload ළඟින් තියාගන්න.\n• Buttons පොඩ්ඩක් transparent කළොත් තිරය හොඳට පේනවා.\n• Ranked ගහන්න කලින් training ground එකේ විනාඩි 10ක් practice කරන්න.\nවතාවකට එක දෙයක් විතරක් වෙනස් කරන්න."},
+  {k:/improve (my )?aim|aim (better|training|practice|drill)|better aim|practice aim|headshot (tips|practice|training)|aim එක දියුණු|aim දියුණු/, t:null, f:true,
+   a:"How to improve your aim 🎯\n• Spend 10 minutes a day in the training ground.\n• Keep the crosshair at head level and drag up from the body to the head.\n• Make small adjustments - avoid huge flicks.\n• Warm up before matches.\n• Use a sensitivity that fits your phone:",
+   s:"Aim දියුණු කරගන්න ක්‍රම 🎯\n• Training ground එකේ දිනපතා විනාඩි 10ක් practice කරන්න.\n• Crosshair එක හිස මට්ටමේ තියාගෙන, ශරීරයේ සිට හිසට drag කරන්න.\n• පොඩි පොඩි adjustments කරන්න, අධික flick වලින් වළකින්න.\n• Match එකකට කලින් warm-up එකක් කරන්න.\n• ඔබේ ෆෝන් එකට ගැළපෙන sensi එකක් පාවිච්චි කරන්න (ෆෝන් නම ටයිප් කරන්න):"},
+  {k:/\brank(ed)?\b|\bpush(ing)?\b|conquer|heroic|grandmaster|\bbr\b|\bcs\b|clash squad|where to (land|drop)|drop spot|landing|රැන්ක්/, t:null,
+   a:"Rank push & landing tips 🏆\n• Pick a landing spot that fits your style: hot drops give more kills but more risk, edge spots give safer loot and time.\n• Know the safe-zone direction early and rotate before the zone closes.\n• Use cover, avoid open ground, and third-party fights instead of joining them.\n• Keep armor and med kits stocked and heal behind cover.\n• Use headphones to hear footsteps.\n• Clash Squad: manage your coins, buy armor and a gun first, and buy together as a team.\n• Play with a squad that communicates.\n• Take a short break after 2 losses in a row.",
+   s:"Rank push සහ landing ටිප්ස් 🏆\n• ඔබේ විලාසයට ගැළපෙන landing spot එකක් තෝරන්න: hot drop වලින් kills වැඩියි, අවදානමත් වැඩියි; කෙළවර spots වලින් loot සහ කාලය ආරක්ෂිතව ලැබෙනවා.\n• Safe zone දිශාව කල් තියා දැනගෙන zone එක වැහෙන්න කලින් rotate වෙන්න.\n• Cover පාවිච්චි කරන්න, open ground එකේ ඉන්න එපා, වෙනත් fights වලට join වෙනවාට වඩා third-party වෙන්න.\n• Armor සහ med kits තියාගෙන, cover එකක් පිටිපස්සේ heal වෙන්න.\n• Headphones දාලා පා ශබ්ද අහන්න.\n• Clash Squad: coins හොඳට කළමනාකරණය කරලා, මුලින් armor සහ gun ගන්න, team එකත් එක්ක එකට ගන්න.\n• කතා කරන squad එකක් එක්ක ගහන්න.\n• දිගටම පරාද 2ක් පස්සේ පොඩි විවේකයක් ගන්න."},
+  {k:/character|\bpets?\b|\balok\b|chrono|kelly|jota|චරිත/, t:null,
+   a:"Characters 🎭 (abilities change with patches, so check the in-game description)\n• Alok: an aura that heals and speeds up your squad - great for team play.\n• Chrono: a protective force field - good when pushing.\n• Kelly: faster sprint - good for rotating.\n• Jota: regain HP after downing enemies - for aggressive players.\n• K: switch modes to convert EP and HP - balanced play.\nPick the one that fits your style and master it.",
+   s:"Characters 🎭 (patches එක්ක abilities වෙනස් වෙනවා, game එකේ description බලන්න)\n• Alok: squad එක heal වෙලා වේගවත් වෙන aura එකක් - team play සඳහා හොඳයි.\n• Chrono: ආරක්ෂිත force field එකක් - push කරද්දී හොඳයි.\n• Kelly: දුවන වේගය වැඩියි - rotate වෙන්න හොඳයි.\n• Jota: සතුරන් down කළාම HP ලැබෙනවා - ආක්‍රමණශීලී ක්‍රීඩකයන්ට.\n• K: EP සහ HP මාරු කරගන්න පුළුවන් - සමබර ක්‍රීඩාවට.\nඔබේ විලාසයට ගැළපෙන එකක් තෝරලා ඒකම හොඳට පුරුදු වෙන්න."},
+  {k:/contact|customer support|\badmin\b|discord|youtube|tiktok|\bchannel\b|community|social media|whatsapp group|join (the )?group|සම්බන්ධ|ඩිස්කෝඩ්|යූටියුබ්|ටික්ටොක්/, t:null,
+   a:"Here's where to find the APELAX team 💬", s:"APELAX team එක මෙතනින් හොයාගන්න 💬",
+   l:[['💬 WhatsApp','https://wa.me/94718791277'],['👥 WhatsApp Group','https://chat.whatsapp.com/FnoDAKQycWVC5Z8eZRCwPr'],['🎮 Discord','https://discord.gg/T3Y2UUa3'],['▶️ YouTube','https://www.youtube.com/channel/UC4AtqvJm2gSjfootlivMEmg'],['🎵 TikTok','https://www.tiktok.com/@apelax_optimize']]},
+  {k:/lag|fps|stutter|slow|freez|frame|ලැග්|ලැග|හිරවෙ|ෆ්‍රේම්/, t:'lag fix',
+   a:"Quick lag / FPS fixes:\n1. Close background apps and clear RAM before playing.\n2. In-game: Graphics = Smooth, FPS = High/Max (if your phone supports it).\n3. Keep 3GB+ free storage and clear the game cache.\n4. Turn off battery saver and let the phone cool down if it's hot.\n5. Update the game and your phone.\nOur free tools below can help too:",
+   s:"ලැග් / FPS වේගවත් කරගන්න ක්‍රම:\n1. ගේම් එක ගහන්න කලින් background apps close කරලා RAM clear කරන්න.\n2. Game එකේ: Graphics = Smooth, FPS = High/Max (ඔබේ ෆෝන් එක support කරනවා නම්).\n3. Storage 3GB+ free තියාගෙන game cache clear කරන්න.\n4. Battery saver off කරන්න, ෆෝන් එක රත් වෙලා නම් පොඩ්ඩක් සීතල වෙන්න දෙන්න.\n5. Game එක සහ ෆෝන් එක update කරන්න.\nපහළ තියෙන නොමිලේ ටූල්ස් වලිනුත් උදව් ගන්න පුළුවන්:"},
+  {k:/sensi|sensitivity|headshot|drag|aim|recoil|සෙන්සි|සංවේදී|හෙඩ්ෂොට්/, t:'sensi', f:true,
+   a:"Sensitivity starting points (they depend on your phone and style, so adjust in training):\n• Start from your current setup and change ONE slider at a time.\n• Higher General/Red Dot = faster flicks, but harder control.\n• If you overshoot, lower it by 5–10. If you can't turn fast enough, raise it by 5–10.\n• Test in the training ground, then in a real match.\nWe have sensitivity packs and tools:",
+   s:"Sensitivity ආරම්භක අගයන් (ෆෝන් එක සහ ක්‍රීඩා විලාසය අනුව වෙනස් වෙනවා, training එකේදී adjust කරන්න):\n• දැනට තියෙන setup එකෙන් පටන් අරන් එක වතාවකට එක slider එකක් විතරක් වෙනස් කරන්න.\n• General/Red Dot වැඩි වෙන තරමට flick වේගවත්, නමුත් control කරන්න අමාරුයි.\n• Aim එක පහු කරනවා නම් 5–10කින් අඩු කරන්න. ඉක්මනින් හැරෙන්න බැරි නම් 5–10කින් වැඩි කරන්න.\n• Training ground එකේ test කරලා පස්සේ real match එකේ බලන්න.\nඅපිට sensitivity packs සහ ටූල්ස් තියෙනවා:"},
+  {k:/\bdpi\b|density|resolution|ඩීපීඅයි/, t:'dpi',
+   a:"DPI changes your screen density, which can make touch feel faster and the UI smaller. Change it only in small steps and note your original value so you can go back. Wrong values can make the UI hard to use. Check the DPI tools here:",
+   s:"DPI කියන්නේ screen density එක. ඒක වෙනස් කළාම touch එක වේගවත් වගේ දැනෙන්න පුළුවන්, UI එක පොඩි වෙනවා. පොඩි පොඩි පියවරවලින් විතරක් වෙනස් කරලා, මුල් අගය ලියාගන්න, ආපහු දාන්න පුළුවන් වෙන්න. වැරදි අගයන් නිසා UI එක පාවිච්චි කරන්න අමාරු වෙන්න පුළුවන්. DPI ටූල්ස් මෙතන බලන්න:"},
+  {k:/ping|network|wifi|wi-fi|data|disconnect|latency|පින්ග්|නෙට්වර්ක්|ඉන්ටර්නෙට්|වයිෆයි/, t:null,
+   a:"To lower ping:\n• Use stable Wi-Fi close to the router, or good 4G/5G signal.\n• Stop downloads/streams on other devices.\n• Choose the right server and restart the router if ping stays high.\n• Avoid VPNs unless they actually help you.",
+   s:"Ping අඩු කරගන්න:\n• Router එක ළඟ stable Wi-Fi හෝ හොඳ 4G/5G signal එකක් පාවිච්චි කරන්න.\n• වෙනත් උපාංගවල downloads/streams නවත්වන්න.\n• හරි server එක තෝරලා, ping අධිකව තියෙනවා නම් router එක restart කරන්න.\n• VPN ඇත්තටම උදව් වෙන්නේ නැත්නම් පාවිච්චි කරන්න එපා."},
+  {k:/heat|hot|battery|temperature|overheat|රත්|බැටරි|උණුසුම්/, t:null,
+   a:"Phone getting hot? Lower graphics a bit, cap FPS, remove the case, don't charge while playing, and take short breaks. Heat makes the phone throttle and causes lag.",
+   s:"ෆෝන් එක රත් වෙනවාද? Graphics පොඩ්ඩක් අඩු කරන්න, FPS cap කරන්න, case එක ගලවන්න, play කරද්දී charge කරන්න එපා, පොඩි විවේක ගන්න. රත් වුණාම ෆෝන් එක throttle වෙලා ලැග් එන්නේ."},
+  {k:/ios|iphone|ipad/, a:"Here are tools for iOS:", s:"iOS සඳහා ටූල්ස්:", t:'ios'},
+  {k:/\bpc\b|emulator|computer|laptop/, a:"Here are PC tools:", s:"PC සඳහා ටූල්ස්:", t:'pc'},
+  {k:/android|ඇන්ඩ්‍රොයිඩ්/, a:"Here are Android tools:", s:"Android සඳහා ටූල්ස්:", t:'android'},
+  {k:/free|download|tool|recommend|suggest|which|find|best for|ටූල්|බාගත|ඩවුන්ලෝඩ්|නොමිලේ/, t:'__ask',
+   a:"Let me look through the tools on this page:", s:"මේ පිටුවේ තියෙන ටූල්ස් මම හොයලා බලන්නම්:"},
+  {k:/price|buy|pack|vip|pay|whatsapp|මිල|ගෙවන්න|ගන්න|වට්ස්ඇප්/, t:null,
+   a:"For packs and pricing, tap BUY NOW at the top of the page. It opens WhatsApp so you can chat with the APELAX team directly.",
+   s:"Packs සහ මිල ගණන් සඳහා පිටුවේ උඩ තියෙන BUY NOW එබුවම WhatsApp විවෘත වෙනවා, ඉන් APELAX team එකත් එක්ක කෙලින්ම කතා කරන්න පුළුවන්."},
+  {k:/^(hi|hello|hey|hy|ayubowan|kohomada|ado)\b|^(හායි|හෙලෝ|ආයුබෝවන්|කොහොමද)/, t:null,
+   a:"Hey! 👋 Ask me about lag, FPS, sensitivity, DPI, ping or tools.", s:"හායි! 👋 ලැග්, FPS, sensitivity, DPI, ping හෝ ටූල්ස් ගැන අහන්න."}
+ ];
+ var RNOTE_SI={general:'වැඩි = වේගවත් චලනය, crosshair එක වෙව්ලනවා නම් අඩු කරන්න', red:'ළඟ දුර tracking සහ වේගවත් headshots', x2:'මධ්‍යම දුර ස්ථායිතාව', x4:'දුර ප්‍රහාර (sprays)', awm:'Sniper වෙඩි සඳහා ස්ථාවර drag නිරවද්‍යතාව', free:'දුවන අතරේ සුමට camera rotation'};
+
+ /* ---------- sensi replies ---------- */
+ var DEV_STOP=/\b(best|good|tips?|for|my|give|me|what|is|the|are|settings?|sensi|sensitivity|sensitivities|free|fire|ff|please|plz|need|want|kohomada|denna|ona|hadanna|set|how|to|which|device|phone|mobile|and|a|an|in|on|of|by|wala|walata|ekata|eka|use|using|i|have|with|can|you|show|find)\b/g;
+ function deviceFrom(low){ return low.replace(DEV_STOP,' ').replace(/[^a-z0-9+.\-\s]/g,' ').replace(/\s+/g,' ').trim(); }
+ function titleCase(t){ return t.replace(/\b[a-z]/g,function(c){return c.toUpperCase();}).replace(/\bIphone\b/,'iPhone').replace(/\bIpad\b/,'iPad'); }
+ var TRAIN={en:"Change ONE slider at a time by 3-5 points in the training ground until it feels right.", si:"Training ground එකේදී එක slider එකක් 3-5කින් වෙනස් කරමින් හරියටම ගැළපෙන තුරු adjust කරන්න."};
+
+ function sensiReply(dev,L){
+  var si=L==='si', S=window.apelaxSensi, P=window.apelaxPacks;
+  if(!S||!P) return { text: si?"Sensi දත්ත තාම load වෙලා නෑ, තත්පර කීපයකින් ආයෙ try කරන්න.":"Sensi data isn't ready yet, please try again in a moment.", extra:null, f:true };
+  var name=titleCase(dev), custom=S.find(dev);
+  var line=function(v){ var o=[]; for(var k in S.LABEL) o.push(S.LABEL[k].replace('AWM / SNIPER','AWM').replace('2x SCOPE','2x').replace('4x SCOPE','4x').replace('GENERAL','General').replace('RED DOT','Red Dot').replace('FREE LOOK','Free Look')+' '+v[k]); return o.join(' \u2022 '); };
+  if(custom){ var v={}; for(var k in S.LABEL) v[k]=S.clamp(custom[k]!=null?custom[k]:S.BASE.bal[k]);
+   return { text:"\ud83d\udcf1 "+(si?name+" සඳහා Sensi (APELAX tested \u2705)":"Sensi for "+name+" (APELAX tested \u2705)")+"\n\n"+line(v)+"\n\n"+(si?"Training ground එකේදී එක slider එකක් 3-5කින් වෙනස් කරමින් හරියටම ගැළපෙන තුරු adjust කරන්න.":"Change ONE slider at a time by 3-5 points in the training ground until it feels perfect."), extra:null, f:true }; }
+  var HIGH=/iphone (1[1-9]|xr|xs|x\b)|ipad (pro|air|1[0-9])|galaxy s\d|\bs2\d\b|note ?(10|20)|z (fold|flip)|poco (f\d|x[5-9])|rog|redmagic|oneplus|pixel [6-9]|(redmi|xiaomi) (note )?1[3-9] pro|mi 1\d|realme gt|iqoo|nubia/;
+  var LOW=/itel|tecno (spark|pop|camon ?c)|infinix (hot|smart)|galaxy (a0|a1|j|m0|m1)\b|galaxy (a0|a1|j|m0|m1)\d|redmi (\d?a\b|9a|9c|10a|12c|13c|go)|realme (c|narzo 3)|nokia c|iphone (5|6|7|8|se)|vivo y(0|1|2)|oppo a(1|3|5)\b|\bj\d/;
+  var tier=HIGH.test(dev)?'high':(LOW.test(dev)?'low':'mid');
+  var TN=si?{low:'අඩු මට්ටම',mid:'මධ්‍යම මට්ටම',high:'ඉහළ මට්ටම'}:{low:'Low-end',mid:'Mid-range',high:'High-end'}, pick={low:'100X',mid:'120X',high:'140X'}[tier];
+  var by=function(n){ return P.PACKS.filter(function(p){return p.n===n;})[0]; };
+  var rec=by(pick), up=by(tier==='high'?'160X':(tier==='mid'?'140X':'120X')), down=by(tier==='low'?'100X':(tier==='mid'?'100X':'120X'));
+  var txt="\ud83d\udcf1 "+(si?name+" සඳහා Sensi\nෆෝන් එකේ බලය: "+TN[tier]+" (model නමෙන් ඇස්තමේන්තුවක්)\n\n\u2705 නිර්දේශිත: Sensi ":"Sensi for "+name+"\nDevice power: "+TN[tier]+" (estimated from the model name)\n\n\u2705 Recommended: Sensi ")
+   +rec.n+"\n"+P.line(rec).split(' \u2022 ').join('\n')+"\nFree Look "+P.RANGE.free[0]+' - '+P.RANGE.free[1];
+  if(tier!=='low') txt+="\n\n\ud83d\udc47 "+(si?"වේගය වැඩියි / අත වෙව්ලනවාද? "+down.n+" try කරන්න:":"Too fast or shaky? Try "+down.n+":")+"\n"+P.line(down);
+  txt+="\n\n\u261d\ufe0f "+(si?"වේගය මදි නම් "+up.n+" try කරන්න:":"Too slow? Try "+up.n+":")+"\n"+P.line(up)+"\n\n"+
+   (si?"Training ground එකේදී එක slider එකක් 3-5කින් වෙනස් කරන්න. සියලු packs බලන්න 'සෙන්සි පැක්' කියන්න.":TRAIN.en+" Say 'sensi pack' for all packs.");
+  return { text:txt, extra:null, f:true };
+ }
+
+ /* ---------- main answer logic ---------- */
+ function local(q,L){
+  var si=L==='si', low=q.toLowerCase();
+  if(/^(clear|reset|new chat|clear chat)$|^(අලුත් චැට්|චැට් එක clear)/.test(low.trim())) return { text: si?"චැට් එක අලුත් කළා ✨ දැන් අහන්න.":"Chat cleared ✨ Ask me anything.", extra:null, clear:true };
+  var lm=low.match(/(?:reply|speak|answer|talk)\s+(?:in\s+)?(sinhala|english)|(සිංහලෙන් කතා|ඉංග්‍රීසියෙන් කතා)/);
+  if(lm){ var tg=(lm[1]==='english'||(lm[2]&&lm[2].charAt(0)==='ඉ'))?'en':'si'; LANG=tg; applyUI();
+   return { text: tg==='si'?"හරි! දැන් සිංහලෙන් පිළිතුරු දෙන්නම් 🇱🇰 (භාෂාව මාරු කරන්න header එකේ EN | සිං බොත්තම ඔබන්න.)":"Done! I'll reply in English now. (Tap the EN | සිං button in the header to switch.)", extra:null }; }
+  var P=window.apelaxPacks, pm=low.match(/\b(100|120|140|160|180)\s*x\b/);
+  if(P&&pm){ var pk=P.PACKS.filter(function(p){return p.n===pm[1]+'X';})[0];
+   return { text:"\ud83d\udd25 Sensi "+pk.n+"\n"+P.line(pk).split(' \u2022 ').join('\n')+(pk.n==='180X'?(si?"\n\n(180X සඳහා තියෙන්නේ General අගය පමණයි.)":"\n\n(Only the General value is available for 180X.)"):"")+"\n\n"+
+    (si?"Training ground එකේදී එක slider එකක් 3-5කින් වෙනස් කරන්න. වෙනත් packs සඳහා '120x', '140x' වගේ ටයිප් කරන්න, නැත්නම් සියල්ල බලන්න 'සෙන්සි පැක්' කියන්න.":"Change ONE slider at a time by 3-5 points in the training ground. Say '120x', '140x' etc. for other packs, or 'sensi pack' to see all."), extra:null, f:true }; }
+  if(P&&/pack|පැක්/.test(low)&&!/dpi|lag|price|buy|ඩීපීඅයි|ලැග්|මිල|ගෙවන්න/.test(low)){
+   return { text:"\ud83d\udce6 APELAX Sensi Packs\n\n"+P.PACKS.map(function(p){return p.n+'\n'+P.line(p);}).join('\n\n')+"\n\n"+
+    (si?"එක pack එකක් සඳහා '140x' වගේ ටයිප් කරන්න, නැත්නම් නිර්දේශිත ranges සඳහා 'සෙන්සි රේන්ජ්' කියන්න.":"Type e.g. '140x' for one pack, or 'sensi range' for recommended ranges."), extra:null, f:true }; }
+  if(P&&/range|recommended|guide|රේන්ජ්|පරාසය/.test(low)&&/sensi|sensitivity|range|සෙන්සි|රේන්ජ්|පරාසය/.test(low)){
+   var LB=window.apelaxSensi.LABEL, o=[]; for(var k in P.RANGE) o.push(LB[k]+': '+P.RANGE[k][0]+' - '+P.RANGE[k][1]+'  ('+(si?RNOTE_SI[k]:P.RNOTE[k])+')');
+   return { text:"\ud83c\udfaf "+(si?"නිර්දේශිත sensi ranges":"Recommended sensi ranges")+"\n\n"+o.join('\n')+"\n\n"+(si?"හැම range එකකම මැදින් පටන් අරන් adjust කරන්න.":"Start in the middle of each range and adjust."), extra:null, f:true }; }
+  var other=/lag|fps|dpi|ping|heat|battery|price|buy|download|tool|ios|\bpc\b|ලැග්|ඩීපීඅයි|පින්ග්|බැටරි|මිල|ටූල්/.test(low)&&!/sensi|සෙන්සි/.test(low);
+  if((awaitingDevice&&!other)||/sensi|sensitivity|සෙන්සි|සංවේදී/.test(low)){
+   var d=deviceFrom(low);
+   if(d.length>=3&&/[a-z]/.test(d)){ awaitingDevice=false; return sensiReply(d,L); }
+   awaitingDevice=true;
+   return { text: si?"ඔයා පාවිච්චි කරන්නේ මොන ෆෝන් එකද? Model නම ටයිප් කරන්න (e.g. Redmi Note 12, Galaxy A54, iPhone 13), මම ඒකට sensi එක දෙන්නම් \ud83d\udcf1":"Which phone do you use? Type the model name (e.g. Redmi Note 12, Galaxy A54, iPhone 13) and I'll give you the sensi for it \ud83d\udcf1", extra:null, f:false };
+  }
+  if(!other&&/\b(redmi|poco|xiaomi|samsung|galaxy|iphone|ipad|realme|oppo|vivo|infinix|tecno|itel|huawei|honor|oneplus|pixel|nokia|moto|motorola|lenovo|asus|rog|sony|xperia|nubia|redmagic|zte)\b|\bsm-[a-z]\d/.test(low)){
+   var dv=deviceFrom(low); if(dv.length>=3){ awaitingDevice=false; return sensiReply(dv,L); } }
+  if(other) awaitingDevice=false;
+  for(var i=0;i<KB.length;i++){ if(KB[i].k.test(low)){ var e=KB[i], extra=null;
+    if(e.t){
+      var words=low.split(/[^a-z0-9]+/).filter(function(w){return w.length>2&&!/the|and|for|tool|best|find|which|free|download|recommend|suggest|need|want|show/.test(w);});
+      var hits=tools().filter(function(t){ return e.t==='__ask' ? words.some(function(w){return t.text.indexOf(w)>-1;}) : (t.text.indexOf(e.t)>-1||t.cat.indexOf(e.t)>-1); }).slice(0,4);
+      extra={ q: e.t==='__ask'?(words[0]||''):e.t, names:hits.map(function(h){return h.name;}) }; }
+    var tx=si?e.s:e.a; if(Array.isArray(tx)) tx=tx[Math.floor(Math.random()*tx.length)]; return { text: tx, extra:extra, f:!!e.f, links:e.l||null }; } }
+  return { text: si?"ඒ ගැන මට තාම හරියටම නෑ \ud83e\udd14 මට ලැග්/FPS, sensitivity, DPI, ping, රත් වීම සහ ටූල්ස් හොයන්න උදව් කරන්න පුළුවන්. පහළ බොත්තම් එකක් try කරන්න, 'help' කියලා ටයිප් කරන්න, නැත්නම් BUY NOW හරහා WhatsApp එකේ අහන්න.":"I'm not sure about that one yet \ud83e\udd14 I can help with lag/FPS, sensitivity, DPI, ping, overheating and finding tools. Try one of the buttons below, type 'help' to see everything I can do, or ask on WhatsApp via BUY NOW.", extra:null };
+ }
+
+ function show(r,L){
+  var u=UI[L];
+  if(r.clear){ box.innerHTML=''; history=[]; awaitingDevice=false; }
+  add(r.text,'bot');
+  if(r.links) r.links.forEach(function(l){ action(l[0],function(){ window.open(l[1],'_blank','noopener'); }); });
+  if(r.extra){ if(r.extra.names.length) add('• '+r.extra.names.join('\n• '),'bot');
+   action(r.extra.names.length?u.show:u.open,function(){ goTools(r.extra.q); }); }
+  if(r.f) action(u.sensi,function(){ toggle(false); if(window.apelaxOpenSensi) window.apelaxOpenSensi(); });
+ }
+
+ async function send(text){
+  text=(text||'').trim(); if(!text||busy) return; busy=true; input.value='';
+  var L=replyLang(text);
+  add(text,'me'); history.push({role:'user',content:text}); history=history.slice(-10);
+  var wait=add('…','bot');
+  try{
+   if(FF_AI_ENDPOINT){
+    var res=await fetch(FF_AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history,lang:L})});
+    if(!res.ok) throw new Error('bad status '+res.status);
+    var data=await res.json(); wait.textContent=String(data.reply||(L==='si'?'සමාවෙන්න, පිළිතුරක් නෑ.':'Sorry, no answer.')); history.push({role:'assistant',content:wait.textContent});
+   } else {
+    await new Promise(function(r){setTimeout(r,350);}); wait.remove(); var r=local(text,L); show(r,L); history.push({role:'assistant',content:r.text});
+   }
+  }catch(err){ console.warn('FF AI:',err); wait.remove(); show(local(text,L),L); }
+  busy=false; box.scrollTop=box.scrollHeight;
+ }
+ form.addEventListener('submit',function(e){ e.preventDefault(); send(input.value); });
 })();
 </script>
 </body>
